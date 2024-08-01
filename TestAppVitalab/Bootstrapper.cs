@@ -4,7 +4,6 @@ using Autofac;
 using ReactiveUI;
 using Splat;
 using Splat.Autofac;
-using System.Linq;
 using System.Reflection;
 using TestAppVitalab.Services;
 
@@ -42,11 +41,14 @@ namespace TestAppVitalab {
     public class RegisterAllServices : Autofac.Module {
         protected override void Load(ContainerBuilder builder) {
             builder.RegisterType<AuthService>()
-                .AsImplementedInterfaces();
-
-            builder.RegisterType<ViewModelService>()
                 .AsImplementedInterfaces()
                 .SingleInstance();
+
+            builder.RegisterType<OrderService>()
+                .AsImplementedInterfaces();
+            
+            builder.RegisterType<ProductService>()
+                .AsImplementedInterfaces();
         }
     }
 }

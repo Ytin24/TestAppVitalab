@@ -20,19 +20,24 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        var DataContext = GetRequiredService<MainViewModel>();
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {
-            desktop.MainWindow = new MainWindow() {
-                DataContext = DataContext
+        var mainViewModel = GetRequiredService<MainViewModel>(); 
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            desktop.MainWindow = new MainWindow
+            {
+                DataContext = mainViewModel // Use the correct variable name
             };
         }
-        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform) {
-            singleViewPlatform.MainView = new MainView {
-                DataContext = DataContext
+        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
+        {
+            singleViewPlatform.MainView = new MainView
+            {
+                DataContext = mainViewModel // Use the correct variable name
             };
         }
-        var viewModelService = GetRequiredService<IViewModelService>();
-        viewModelService.CurrentViewModel = GetRequiredService<LoginViewModel>();
+
+        mainViewModel.Router.Navigate.Execute(GetRequiredService<LoginViewModel>()); 
+
         base.OnFrameworkInitializationCompleted();
     }
     private static T GetRequiredService<T>() => Splat.Locator.Current.GetRequiredService<T>();

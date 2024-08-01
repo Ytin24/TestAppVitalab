@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using TestAppVitalab.Core.DTO;
 
 namespace TestAppVitalab.Api.DAL.Models;
 
@@ -17,5 +14,16 @@ public partial class User
     public string UserPassword { get; set; } = null!;
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
+}
+public record UserDTO
+{
+    public int UserId { get; set; }
+
+    public string UserName { get; set; } = string.Empty;
+
+    public string UserLogin { get; set; } = string.Empty;
+
+    public string UserPassword { get; set; } = string.Empty;
 
 }

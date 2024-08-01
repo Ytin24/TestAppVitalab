@@ -15,7 +15,6 @@
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
 		<vm:MainViewModel />
 	</Design.DataContext>
-			<Panel HorizontalAlignment="Center" VerticalAlignment="Center">
 				<rxui:RoutedViewHost Grid.Row="0" Router="{Binding Router}" PageTransition="{x:Null}">
 					<rxui:RoutedViewHost.DefaultContent>
 						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="10">
@@ -30,5 +29,4 @@
 						<local:ViewLocator/>
 					</rxui:RoutedViewHost.ViewLocator>
 				</rxui:RoutedViewHost>
-			</Panel>
 </UserControl>

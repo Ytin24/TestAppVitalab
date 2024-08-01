@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:TestAppVitalab.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="TestAppVitalab.Views.HomeView"
+             x:DataType="vm:HomeViewModel">
+    <Grid RowDefinitions="*,3*" ColumnDefinitions="1*,3*">
+        <TextBlock Text="{Binding HiUser}"></TextBlock>
+        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding OrderCollection}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding OrderId}" />
+                        <TextBlock Text="{Binding TotalPrice}" />
+                        <TextBlock Text="{Binding OrderDate}" />
+                        <ListBox ItemsSource="{Binding OrderItems}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Product.Name}" />
+                                        <TextBlock Text="{Binding Product.Price}" />
+                                        <TextBlock Text="{Binding Quantity}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

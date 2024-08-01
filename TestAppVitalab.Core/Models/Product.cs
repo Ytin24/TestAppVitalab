@@ -13,3 +13,11 @@ public partial class Product
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 }
+public record ProductDTO
+{
+    public int ProductId { get; set; }
+
+    public string Name { get; set; }= string.Empty;
+
+    public decimal Price { get; set; }
+}

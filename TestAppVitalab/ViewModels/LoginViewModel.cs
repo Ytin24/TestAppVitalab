@@ -18,10 +18,17 @@ namespace TestAppVitalab.ViewModels {
 
         public string AppartmentNumber { get; set; } = string.Empty;
         public ReactiveCommand<Unit, Unit> LoginAccount { get; set; }
-        public LoginViewModel(IScreen screen, IViewModelService viewModelService, IAuthService authService) : base(screen) {
-            LoginAccount = ReactiveCommand.Create(() =>
+        public LoginViewModel(IScreen screen, IAuthService authService, HomeViewModel homeViewModel) : base(screen) {
+            LoginAccount = ReactiveCommand.CreateFromTask(async () =>
             {
-                authService.TryLoginUser(new() { UserLogin = Login, UserPassword = Password });
+                if (await authService.TryLoginUser(new()
+                    {
+                        UserLogin = Login,
+                        UserPassword = Password
+                    }))
+                {
+                    HostScreen.Router.Navigate.Execute(homeViewModel);
+                }
             });
         }
     }
